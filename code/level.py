@@ -47,6 +47,7 @@ class Level:
 
             pygame.display.flip()
             entityMediator.verify_collision(entity_list=self.entity_list)
+            entityMediator.verify_health(entity_list=self.entity_list)
             pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
