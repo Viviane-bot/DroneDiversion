@@ -14,6 +14,7 @@ ENTITY_SPEED = {
     'level1bg2': 2,
     'level1bg3': 3,
     'Player1':3,
+    'Player1Shot':1,
     'Enemy':2,
 }
 ENTITY_HEALTH = {
@@ -22,6 +23,7 @@ ENTITY_HEALTH = {
     'level1bg2': 999,
     'level1bg3': 999,
     'Player1':300,
+    'Player1Shot':1,
     'Enemy':50,
 }
 
@@ -29,6 +31,9 @@ ENTITY_HEALTH = {
 MENU_OPTION = ('START GAME',
                'SCORE',
                'EXIT')
+
+#P
+PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL}
 
 
 
