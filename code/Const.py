@@ -14,9 +14,11 @@ ENTITY_SPEED = {
     'level1bg2': 2,
     'level1bg3': 3,
     'Player1':3,
-    'Player1Shot':1,
+    'Player1Shot':3,
     'Enemy':2,
+    'Enemy1Shot':2,
 }
+
 ENTITY_HEALTH = {
     'level1bg0': 999,
     'level1bg1': 999,
@@ -25,8 +27,12 @@ ENTITY_HEALTH = {
     'Player1':300,
     'Player1Shot':1,
     'Enemy':50,
+    'Enemy1Shot':1,
 }
 
+ENTITY_SHOT_DELAY = {
+    'Player1':20,
+}
 #MENU
 MENU_OPTION = ('START GAME',
                'SCORE',

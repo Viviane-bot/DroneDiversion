@@ -3,6 +3,7 @@
 from pygame.examples.grid import WINDOW_WIDTH
 
 from code.Const import ENTITY_SPEED
+from code.enemyShot import EnemyShot
 from code.entity import Entity
 
 
@@ -12,4 +13,7 @@ class Enemy(Entity):
 
     def move(self, ):
         self.rect.centerx -= ENTITY_SPEED[self.name]
+
+    def shoot (self):
+        return EnemyShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
 
