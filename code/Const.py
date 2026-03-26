@@ -34,6 +34,7 @@ ENTITY_HEALTH = {
 
 ENTITY_SHOT_DELAY = {
     'Player1':20,
+    'Enemy':100,
 }
 #MENU
 MENU_OPTION = ('START GAME',
