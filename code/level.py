@@ -6,7 +6,8 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, COLOR_GREEN
+from code.Const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, COLOR_GREEN, EVENT_TIMEOUT, SPAWN_TIME, TIMEOUT_STEP, \
+    TIMEOUT_LEVEL
 from code.enemy import Enemy
 from code.entity import Entity
 from code.entityFactory import EntityFactory
@@ -16,14 +17,15 @@ from code.player import Player
 
 class Level:
     def __init__(self, window, name, game_mode):
-        self.timeout = 20000
+        self.timeout = TIMEOUT_LEVEL
         self.window = window
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-        pygame.time.set_timer(EVENT_ENEMY, 4000)
+        pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
+        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
 
 
 
@@ -48,6 +50,16 @@ class Level:
                     sys.exit()
                 if event.type == EVENT_ENEMY:
                     self.entity_list.append(EntityFactory.get_entity('Enemy'))
+                if event.type == EVENT_TIMEOUT:
+                    self.timeout -= TIMEOUT_STEP
+                    if self.timeout == 0:
+                        return True
+                found_player = False
+                for ent in self.entity_list:
+                    if isinstance(ent, Player):
+                        found_player = True
+                if not found_player:
+                    return False
 
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', COLOR_WHITE, (50, 5))
             self.level_text(14, f'fps:{clock.get_fps() :.0f}', COLOR_WHITE, (50, WIN_HEIGHT - 35))
@@ -56,7 +68,7 @@ class Level:
             pygame.display.flip()
             entityMediator.verify_collision(entity_list=self.entity_list)
             entityMediator.verify_health(entity_list=self.entity_list)
-            pass
+
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
             text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)

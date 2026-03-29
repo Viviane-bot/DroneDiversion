@@ -10,6 +10,7 @@ COLOR_CYAN = (0,128,128)
 
 #E
 EVENT_ENEMY = pygame.USEREVENT + 1
+EVENT_TIMEOUT = pygame.USEREVENT + 2
 ENTITY_SPEED = {
     'level1bg0': 0,
     'level1bg1': 1,
@@ -77,6 +78,9 @@ PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL}
 
 #S
 SPAWN_TIME = 4000
+
+TIMEOUT_STEP = 1000
+TIMEOUT_LEVEL = 200000
 
 
 
